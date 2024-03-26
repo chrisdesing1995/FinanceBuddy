@@ -1,0 +1,20 @@
+<app-header [visibleMenu]="false" [visibleExits]="false" [visibleBackButton]="true"
+  [title]="'Title.createAccount'|translate" (onBack)="onClickClose()"></app-header>
+
+<ion-content class="ion-padding" scrollY="true">
+  <ion-list>
+    <ion-item class="ion-margin-bottom" lines="none" fill="outline">
+      <ion-icon slot="start" name="card-outline" color="medium"></ion-icon>
+      <ion-label for="account.name" position="floating" color="medium">{{'Label.description'|translate}}</ion-label>
+      <ion-input id="account.name" name="name" [(ngModel)]="accounts.name"></ion-input>
+    </ion-item>
+    <ion-item class="ion-margin-bottom" lines="none" fill="outline">
+      <ion-icon slot="start" name="cash-outline" color="medium"></ion-icon>
+      <ion-label for="account.currentBalance" position="floating"
+        color="medium">{{'Label.quantity'|translate}}</ion-label>
+      <ion-input id="account.currentBalance" name="currentBalance" type="number" [(ngModel)]="accounts.currentBalance"
+        [disabled]="action == 'N' ?false:true"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button class="ion-margin-top" (click)="save()" mode="ios" expand="block">{{'Button.save'|translate}}</ion-button>
+</ion-content>

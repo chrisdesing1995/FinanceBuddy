@@ -1,0 +1,47 @@
+ion-avatar {
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  --border-radius: 4px;
+}
+
+
+ion-thumbnail {
+  --size: 2rem;
+  --border-radius: 5px;
+}
+
+ion-list {
+  background: none
+}
+
+ion-radio::part(container) {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  border-radius: 4px;
+  border: 2px solid #ddd;
+}
+
+ion-radio::part(mark) {
+  background: none;
+  transition: none;
+  transform: none;
+  border-radius: 0;
+}
+
+ion-radio.radio-checked::part(container) {
+  background: var(--ion-color-warning);
+  border-color: transparent;
+}
+
+ion-radio.radio-checked::part(mark) {
+  width: 6px;
+  height: 10px;
+
+  border-width: 0px 2px 2px 0px;
+  border-style: solid;
+  border-color: var(--ion-color-warning-contrast);
+
+  transform: rotate(45deg);
+}

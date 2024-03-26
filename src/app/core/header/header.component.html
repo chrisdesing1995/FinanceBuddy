@@ -1,0 +1,33 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button *ngIf="visibleMenu" color="dark" menu="menuId"></ion-menu-button>
+      <!-- <ion-back-button *ngIf="visibleBackButton" [defaultHref]="valueHref"></ion-back-button> -->
+    </ion-buttons>
+
+    <ion-title><b>{{title | translate}}</b></ion-title>
+
+    <ion-buttons *ngIf="visibleBackButton" slot="end">
+      <ion-button (click)="onClickBack()">
+        <ion-icon [name]="IconNameClose"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="false" slot="end">
+      <ion-button (click)="onClickExit()">
+        <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="visibleProfile" slot="end">
+      <ion-button (click)="onClickProfile()">
+        <div style="display: flex; align-items: center;">
+          <ion-avatar slot="end">
+            <ion-img [src]="user.photo ?user.photo  : '../../../../assets/images/avatar.png' "
+              alt="profile-defoult"></ion-img>
+          </ion-avatar>
+        </div>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

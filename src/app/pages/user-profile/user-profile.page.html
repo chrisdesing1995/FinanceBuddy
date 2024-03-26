@@ -1,0 +1,54 @@
+<app-header
+  [visibleBackButton]="false"
+  [title]="title"
+></app-header>
+
+<ion-content class="ion-padding">
+
+  <div style="width: 100%;" class="avatar-content">
+    <ion-avatar>
+      <ion-img
+        [src]="user.photo ?user.photo  : '../../../../assets/images/avatar.png' "
+        alt="profile-defoult"
+      ></ion-img>
+      <ion-icon class="boton_icon" name="pencil-outline" (click)="onClickCamera()" style="cursor: pointer"></ion-icon>
+    </ion-avatar>
+  </div>
+
+  <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <ion-text color="dark">
+      <h5><b>{{user?.userName}}</b></h5>
+    </ion-text>
+    <ion-chip color="warning">{{ dateNow | customDate: (lang ? 'es' : 'en') }}</ion-chip>
+  </div>
+
+  <ion-text color="dark">
+    <h4><b>{{'Label.information'| translate}}</b></h4>
+  </ion-text>
+
+  <div *ngIf="selectedSegment === 'information'">
+    <ion-list>
+      <ion-item lines="none" fill="outline">
+        <ion-icon slot="start" name="person-circle-outline" color="medium"></ion-icon>
+        <ion-label>
+          <p>{{'Label.name'|translate}}</p>
+          <ion-text>{{user.name +' '+ user.surName}}</ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" fill="outline" class="ion-margin-top">
+        <ion-icon slot="start" name="mail-outline" color="medium"></ion-icon>
+        <ion-label>
+          <p>{{'Label.email'|translate}}</p>
+          <ion-text>{{user.email}}</ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+</ion-content>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="onSave()">
+    <ion-icon name="save-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

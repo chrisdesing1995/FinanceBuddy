@@ -1,0 +1,53 @@
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item lines="none" fill="outline" class="ion-margin-top">
+      <ion-avatar slot="start">
+        <ion-img [src]="user.photo ?user.photo  : '../../../../assets/images/avatar.png' "
+          alt="profile-defoult"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h3>{{user.name}} {{user.surName}}</h3>
+        <p>{{user.email}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-text color="dark">
+      <h4><b>{{'Title.setting'|translate}}</b></h4>
+    </ion-text>
+    <ion-item lines="none" fill="outline" class="ion-margin-top">
+      <ion-label>{{'Label.language'| translate}} </ion-label>
+      <div class="check-content">
+        <ion-radio-group [(ngModel)]="lang" (ionChange)="changeLanguage($event)">
+          <ion-chip color="light">
+            <ion-thumbnail class="language">
+              <img alt="es" src="../../../assets/images/es.png" />
+            </ion-thumbnail>
+            <ion-radio value="es"></ion-radio>
+          </ion-chip>
+          <ion-chip color="light">
+            <ion-thumbnail>
+              <img alt="en" src="../../../assets/images/en.png" />
+            </ion-thumbnail>
+            <ion-radio value="en" color="warning"></ion-radio>
+          </ion-chip>
+        </ion-radio-group>
+      </div>
+    </ion-item>
+    <ion-item lines="none" fill="outline" class="ion-margin-top">
+      <ion-icon *ngIf="darkTheme" slot="start" name="moon" color="dark"></ion-icon>
+      <ion-icon *ngIf="!darkTheme" slot="start" name="sunny" color="warning"></ion-icon>
+      <ion-label *ngIf="darkTheme">
+        {{'Label.dark'| translate}}
+      </ion-label>
+      <ion-label *ngIf="!darkTheme">
+        {{'Label.light'| translate}}
+      </ion-label>
+      <ion-toggle [color]="darkTheme ?'dark':'warning' " (ionChange)="toggleDarkTheme($event)" [checked]="darkTheme" slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item lines="none" fill="outline" class="ion-margin-top" (click)="onClickExit()">
+      <ion-label>
+        {{'Label.logout'| translate}}
+      </ion-label>
+      <ion-icon slot="end" name="exit-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,45 @@
+.content-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 95%;
+    padding: 15px;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1.2;
+    background-color: #c4d9fd6b;
+}
+
+.content-card-incomeClass {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 95%;
+    padding: 15px;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1.2;
+    background-color: var(--ion-color-success);
+}
+
+.content-card-expenceClass {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 95%;
+    padding: 15px;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1.2;
+    background-color: var(--ion-color-danger);
+}
+
+ion-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    --border-radius: 50%;
+}
+
+
+ion-thumbnail {
+    --size: 2rem;
+    --border-radius: 50%;
+}

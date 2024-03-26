@@ -1,0 +1,72 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="primary" style="border-bottom-left-radius: 25%; border-bottom-right-radius: 25%;">
+        <ion-row>
+            <ion-col class="ion-margin" style="display: flex; justify-content: space-between;">
+                <ion-label>
+                    <h1><b>{{'Title.welcome' | translate}}</b></h1>
+                    <p style="color: var(--ion-color-primary-contrast);">{{user.name}} {{user.surName}}</p>
+                </ion-label>
+                <div style="display: flex; align-items: center;" (click)="onClickProfile()">
+                    <ion-avatar slot="end">
+                        <ion-img [src]="user.photo ?user.photo  : '../../../../assets/images/avatar.png' "
+                            alt="profile-defoult"></ion-img>
+                    </ion-avatar>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-card>
+        <ion-card-header >
+            <ion-card-subtitle color="primary"><b style="font-size: 18px;">{{'Label.financialSummary' |
+                    translate}}</b></ion-card-subtitle>
+        </ion-card-header>
+        <apx-chart #chartCircle [series]="chartCircleOptions.series" [chart]="chartCircleOptions.chartCircle"
+            [plotOptions]="chartCircleOptions.plotOptions" [labels]="chartCircleOptions.labels"
+            [fill]="chartCircleOptions.fill" [theme]="chartCircleOptions.theme"></apx-chart>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0.75rem;">
+            <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+                <ion-badge slot="start" color="success"><ion-icon size="large"
+                        name="trending-up-outline"></ion-icon></ion-badge>
+                <ion-label style="margin-left: 0.5rem;">
+                    <p>{{'Label.totalIncome' | translate}}</p>
+                    <h2 style="color: var(--ion-color-success);"><b>{{ incomeTotal | currency }}</b></h2>
+                </ion-label>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <ion-badge slot="start" color="danger"><ion-icon size="large"
+                        name="trending-down-outline"></ion-icon></ion-badge>
+                <ion-label style="margin-left: 0.5rem;">
+                    <p>{{'Label.totalExpence' | translate}}</p>
+                    <h2 style="color: var(--ion-color-danger);"><b>{{ expenseTotal | currency }}</b></h2>
+                </ion-label>
+            </div>
+        </div>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle color="primary"><b style="font-size: 16px;">{{'Label.summaryByAccounts' |
+                    translate}}</b></ion-card-subtitle>
+        </ion-card-header>
+        <apx-chart #chartBar [series]="chartBarOptions.series" [chart]="chartBarOptions.chartBar"
+            [dataLabels]="chartBarOptions.dataLabels" [plotOptions]="chartBarOptions.plotOptions"
+            [colors]="chartAreaOptions.colors" [grid]="chartAreaOptions.grid" [yaxis]="chartBarOptions.yaxis"
+            [legend]="chartBarOptions.legend" [fill]="chartBarOptions.fill" [stroke]="chartBarOptions.stroke"
+            [tooltip]="chartBarOptions.tooltip" [xaxis]="chartBarOptions.xaxis" [theme]="chartBarOptions.theme">
+        </apx-chart>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle color="primary"><b style="font-size: 16px;">{{'Label.summaryByMonth' |
+                    translate}}</b></ion-card-subtitle>
+        </ion-card-header>
+        <apx-chart #chartArea [series]="chartAreaOptions.series" [chart]="chartAreaOptions.chartArea"
+            [xaxis]="chartAreaOptions.xaxis" [yaxis]="chartAreaOptions.yaxis" [stroke]="chartAreaOptions.stroke"
+            [tooltip]="chartAreaOptions.tooltip" [colors]="chartAreaOptions.colors" [grid]="chartAreaOptions.grid"
+            [dataLabels]="chartAreaOptions.dataLabels" [theme]="chartAreaOptions.theme">
+        </apx-chart>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">finance-buddy</string>
+    <string name="title_activity_main">finance-buddy</string>
+    <string name="package_name">com.code.financeBuddy</string>
+    <string name="custom_url_scheme">com.code.financeBuddy</string>
+</resources>

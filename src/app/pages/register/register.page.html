@@ -1,0 +1,44 @@
+<app-header
+  [title]="title"
+  [visibleMenu]="false"
+  [visibleBackButton]="true"
+  [visibleExits]=" false"
+  (onBack)="onClickBack()"
+></app-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header mode="ios">
+      <ion-label>{{'Label.information'|translate}}</ion-label>
+    </ion-list-header>
+    <ion-item fill="outline" class="ion-margin-top">
+      <ion-icon slot="start" name="id-card-outline" color="tertiary"></ion-icon>
+      <ion-label position="floating" color="medium">{{'Label.name'|translate}}</ion-label>
+      <ion-input type="text" [maxlength]="100" [(ngModel)]="user.name" ></ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-top">
+      <ion-icon slot="start" name="id-card-outline" color="tertiary"></ion-icon>
+      <ion-label position="floating" color="medium">{{'Label.lastName'|translate}}</ion-label>
+      <ion-input type="text" [maxlength]="100" [(ngModel)]="user.surName" ></ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-top">
+      <ion-icon slot="start" name="person-outline" color="medium"></ion-icon>
+      <ion-label position="floating" color="medium">{{'Label.userName'|translate}}</ion-label>
+      <ion-input type="text" [maxlength]="100" [(ngModel)]="user.userName" ></ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-top">
+      <ion-icon slot="start" name="mail-outline" color="medium"></ion-icon>
+      <ion-label position="floating" color="medium">{{'Label.email'|translate}}</ion-label>
+      <ion-input type="text" [maxlength]="50" [(ngModel)]="user.email" ></ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-top">
+      <ion-icon slot="start" name="lock-closed-outline" color="medium"></ion-icon>
+      <ion-label position="floating" color="medium">{{'Label.password'|translate}}</ion-label>
+      <ion-input type="text" [maxlength]="50" [(ngModel)]="user.password" ></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button
+      class="ion-margin-top"
+      mode="ios"
+      expand="block" (click)="registerUser()">{{'Label.register'|translate}}</ion-button>
+</ion-content>

@@ -1,0 +1,120 @@
+<ion-header mode="md" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <div style="display: flex; justify-content: end; margin-bottom: 1rem; margin-top: 1rem;">
+
+      <ion-title><b>{{ 'Footer.movement'| translate}}</b></ion-title>
+
+      <ion-buttons slot="end">
+        <ion-badge style="display: flex; align-items: center;" (click)="addAccounts()">
+          <ion-label>{{'Button.add'|translate}}</ion-label>
+          <ion-icon name="add"></ion-icon>
+        </ion-badge>
+      </ion-buttons>
+    </div>
+
+    <ion-slides [options]="slideOpts">
+      <ion-slide *ngFor="let item of newsList" style="cursor: pointer">
+        <div class="content-card" (click)="updateAccounts(item)">
+          <div style="display: flex; flex-direction: row; align-items: center;">
+            <ion-icon style="padding-right: 10px; color: var(--ion-color-primary-contrast);"
+              name="card-outline"></ion-icon>
+            <ion-text style="color: var(--ion-color-primary-contrast);">
+              {{item.name}}
+            </ion-text>
+          </div>
+          <ion-text style="color: var(--ion-color-primary-contrast);">
+            <h3><b>{{item.currentBalance | currency:'USD'}}</b></h3>
+          </ion-text>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
+    <!-- skeleton -->
+    <ion-slides *ngIf="isVisible" [options]="slideOpts">
+      <ion-slide>
+        <ion-thumbnail class="content-card" slot="start">
+          <ion-skeleton-text [animated]="true" style="width: 200px; height: 20px;"></ion-skeleton-text>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 180px; height: 15px;"></ion-skeleton-text>
+          </p>
+        </ion-thumbnail>
+      </ion-slide>
+      <ion-slide>
+        <ion-thumbnail class="content-card" slot="start">
+          <ion-skeleton-text [animated]="true" style="width: 200px; height: 20px;"></ion-skeleton-text>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 180px; height: 15px;"></ion-skeleton-text>
+          </p>
+        </ion-thumbnail>
+      </ion-slide>
+    </ion-slides>
+
+    <div style="margin: 0.4rem;">
+      <ion-segment mode="ios" [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="I">
+          <ion-icon color="success" name="trending-up-outline"></ion-icon>
+          <ion-label>{{'Label.income'| translate}}</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="E">
+          <ion-icon color="danger" name="trending-down-outline"></ion-icon>
+          <ion-label>{{'Label.expenses'| translate}}</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+  <div *ngIf="selectedSegment == 'I'">
+    <ion-card *ngFor="let item of transactionIncome" style="border-left: 3px solid #23C296;">
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="8" style="display: flex; align-items: center;">
+            <ion-icon style="margin-right: 0.5rem;" color="success" name="trending-up-outline"></ion-icon>
+            <ion-text color="dark"><b>{{item.description}}</b></ion-text>
+          </ion-col>
+          <ion-col size="4" style="display: flex; align-items: center; justify-content: end;">
+            <ion-badge color="success">
+              <h2><b>+ {{item.amount | currency: 'USD'}}</b></h2>
+            </ion-badge>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{item.accountName}}</ion-label>
+          </ion-col>
+          <ion-col style="display: flex; justify-content: end;">
+            <ion-label>{{item.createDate | date: 'mediumDate':'es':'es'}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="selectedSegment == 'E'">
+    <ion-card *ngFor="let item of transactionExpense" style="border-left: 3px solid #eb445a;">
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="8" style="display: flex; align-items: center;">
+            <ion-icon style="margin-right: 0.5rem;" color="danger" name="trending-down-outline"></ion-icon>
+            <ion-text color="dark"><b>{{item.description}}</b></ion-text>
+          </ion-col>
+          <ion-col size="4" style="display: flex; align-items: center; justify-content: end;">
+            <ion-badge color="danger">
+              <h2><b>- {{item.amount | currency: 'USD'}}</b></h2>
+            </ion-badge>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{item.accountName}}</ion-label>
+          </ion-col>
+          <ion-col style="display: flex; justify-content: end;">
+            <ion-label>{{item.createDate | date: 'mediumDate':'es':'es'}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="openSegment()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,0 +1,18 @@
+<ion-menu side="start" menuId="menuId" contentId="main">
+  <!-- <ion-header color="primary">
+    <ion-toolbar color="primary">
+      <ion-title style="font-family: fantasy">Menu</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-content color="primary" class="ion-padding">
+    <ion-menu-toggle>
+        <ion-item color="primary"
+          *ngFor="let item of menu"
+          lines="none"
+          [routerLink]="[item.rediretTo]">
+          <ion-icon slot="start" [name]="item.icon"></ion-icon>
+          <ion-label>{{ item.name | translate }}</ion-label>
+        </ion-item>
+    </ion-menu-toggle>
+  </ion-content>
+</ion-menu>

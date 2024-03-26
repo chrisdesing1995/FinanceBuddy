@@ -1,0 +1,33 @@
+<app-header
+  [visibleMenu]="false"
+  [visibleExits]="false"
+  [visibleBackButton]="true"
+  [title]="'Title.createIncome'|translate"
+  (onBack)="onClickClose()"
+></app-header>
+
+<ion-content class="ion-padding" scrollY="true">
+  <ion-list>
+    <ion-item class="ion-margin-bottom" fill="outline">
+      <ion-label for="transaction.description" position="floating" color="medium">{{'Label.description'|translate}}</ion-label>
+      <ion-input id="transaction.description"  placeholder="Descripción del ingreso"  name="description"  [(ngModel)]="transaction.description"></ion-input>
+    </ion-item>
+    <ion-item class="ion-margin-bottom" fill="outline">
+      <ion-label for="transaction.account" position="floating" color="medium">{{'Label.account'|translate}}</ion-label>
+      <ion-select mode="ios" [compareWith]="compareWithAccount" placeholder="Seleccione la cuenta" (ionChange)="onChangeAccount($event)">
+        <ion-select-option *ngFor="let item of accountsList" [value]="item">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="ion-margin-bottom" fill="outline">
+      <ion-label for="transaction.category" position="floating" color="medium">{{'Label.category'|translate}}</ion-label>
+      <ion-select mode="ios" [compareWith]="compareWithCategory" placeholder="Seleccione la categoria" (ionChange)="onChangeCategory($event)">
+        <ion-select-option *ngFor="let item of typeCategories" [value]="item">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="ion-margin-bottom" fill="outline">
+      <ion-label for="transaction.amount" position="floating" color="medium">{{'Label.quantity'|translate}}</ion-label>
+      <ion-input id="transaction.amount" placeholder="valor del ingreso" name="amount"  type="number" [(ngModel)]="transaction.amount"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button class="ion-margin-top" (click)="save()" mode="ios" expand="block">{{'Button.save'|translate}}</ion-button>
+</ion-content>

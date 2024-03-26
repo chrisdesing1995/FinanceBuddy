@@ -1,0 +1,10 @@
+<ion-content>
+  <ion-item
+    *ngFor="let action of action"
+    lines="none"
+    button="true"
+    detail="false"
+    (click)="onClickAction(action)"
+    >{{ action.name | translate}}</ion-item
+  >
+</ion-content>
